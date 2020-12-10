@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./style.css";
+import Banner from "./Banner";
+import Restaurants from "./Restaurants";
 
-function App() {
+import "bootstrap/dist/css/bootstrap.min.css";
+
+export default function App() {
+  const [apiData, setApiData] = useState(null);
+
+  useEffect(() => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ latitude: 13.0123481, longitude: 80.244455 }),
+    };
+
+    console.log(requestOptions);
+
+    fetch(
+      "https://eatoo.uberdoo.com/foodapp/public/api/guest/listRestaurant",
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((data) => setApiData(data));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Banner banners={apiData && apiData.banners} />
+      <Restaurants rests={apiData && apiData.listRestaurants} />
     </div>
   );
 }
-
-export default App;

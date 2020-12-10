@@ -3,8 +3,8 @@ p {
   font-family: Lato;
 }
 
-::-webkit-scrollbar{width:2px;height:2px;}
-::-webkit-scrollbar-button{width:2px;height:2px;}
+::-webkit-scrollbar{ width:2px; height:2px;}
+::-webkit-scrollbar-button{ width:2px; height:2px;}
 
 
 div{
@@ -18,28 +18,24 @@ div{
 }
 
 .banner {
-    
+  background-color: whitesmoke;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   height: 40vh;
   overflow-x: scroll;
   width: 100vw;
-
   z-index: 100;
-
 }
 
 .banner > img {
   height: 30vh;
   margin: 10px;
-  
   display:block;
   padding:5px;
 }
 
 .rests {
-  margin-top: 40vh;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -56,5 +52,21 @@ div{
 
 .rest__image {
   padding: 10px;
-  width: 100px !important;
+  width: 30vw !important;
+}
+
+
+@media only screen and (max-width: 1000px) {
+  .rest__image  {
+    width: 70vw !important;
+  }
+
+  .banner {
+    height: fit-content;
+  }
+
+  .banner > img {
+    width: 50vw;
+    object-fit: contain;
+  }
 }

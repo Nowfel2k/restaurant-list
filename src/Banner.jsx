@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { actionTypes } from "./Reducer";
+import { useStateValue } from "./StateProvider";
 import "./style.css";
 
-export default function Banner({ banners }) {
+export default function Banner() {
+  const [{ banners }, dispatch] = useStateValue();
+
+  useEffect(() => {
+    dispatch({
+      type: actionTypes.SET_BANNERS,
+      banners: banner_list,
+    });
+  });
+
   if (banners) console.log(banners[0]);
 
   console.log("Number of banners :", banners?.length);

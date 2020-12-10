@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./style.css";
 import { Card, Accordion } from "react-bootstrap";
+import { useStateValue } from "./StateProvider";
+import { actionTypes } from "./Reducer";
 
-export default function Restaurants({ rests }) {
+export default function Restaurants({ rests_raw }) {
+  const [{ rests }, dispatch] = useStateValue();
+
+  useEffect(() => {
+    if (rests_raw)
+      dispatch({
+        type: actionTypes.SET_RESTS,
+        rests: rests_raw,
+      });
+  });
+
   if (rests) {
     console.log("a restaurant : ", rests[5]);
   }

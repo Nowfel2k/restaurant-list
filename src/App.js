@@ -28,7 +28,7 @@ export default function App() {
   return (
     <div className="app">
       <Banner banners={apiData && apiData.banners} />
-      <Restaurants rests={apiData && apiData.listRestaurants} />
+      <Restaurants rests_raw={apiData && apiData.listRestaurants} />
     </div>
   );
 }
